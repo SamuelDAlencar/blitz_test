@@ -9,13 +9,15 @@ import Tasks from './components/Task';
 function App() {
   const dispatch = useDispatch();
   const [currTask, setCurrTask] = useState([]);
+  const [taskId, setTaskId] = useState(1);
 
   const handleChange = (event) => {
     setCurrTask(event.target.value);
   };
-
+  
   const handleAddTask = () => {
-    dispatch(addTask({ id: 1, subject: currTask }));
+    dispatch(addTask({ id: taskId, subject: currTask }));
+    setTaskId(taskId + 1);
   };
 
   return (
