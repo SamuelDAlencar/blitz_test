@@ -13,7 +13,14 @@ function Tasks() {
   return (
     <ol>
       {tasks.map((task, i) => {
-        return <li key={i}>{task.subject}<button onClick={() => handleEditTask(i + 1)}>Edit</button></li>;
+        return (
+          <li key={i}>{task.subject}
+            <button onClick={() => handleEditTask(i + 1)}>
+              Edit
+            </button>
+            <input type="checkbox" />
+          </li>
+        );
       })}
     </ol>
   );
