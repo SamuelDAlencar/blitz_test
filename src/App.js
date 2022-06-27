@@ -23,9 +23,9 @@ function App() {
   return (
     <>
       <Header />
-      <main>
+      <main className='app_main'>
         <section className="addTask_section">
-          <h3>New Task</h3>
+          <h3 className="main_h3">New Task</h3>
           <input onChange={handleChange} />
           <button
             onClick={() => handleAddTask()}

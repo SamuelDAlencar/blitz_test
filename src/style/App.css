@@ -1,7 +1,9 @@
-.app_body {
+.app_main {
   text-align: center;
+  background-color: #393E46;
+  color: whitesmoke;
 }
 
-.h1 {
-  color: red;
+.main_h3 {
+  margin: 0;
 }
