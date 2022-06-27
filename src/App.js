@@ -14,7 +14,7 @@ function App() {
   const handleChange = (event) => {
     setCurrTask(event.target.value);
   };
-  
+
   const handleAddTask = () => {
     dispatch(addTask({ id: taskId, subject: currTask }));
     setTaskId(taskId + 1);
@@ -31,12 +31,14 @@ function App() {
             onClick={() => handleAddTask()}
           >Add task</button>
         </section>
-        <section className="ongoingTasks_section">
-          <h4>Ongoing</h4>
-          <Tasks />
-        </section>
-        <section className="doneTasks_section">
-          <h4>Done</h4>
+        <section className="tasks_section">
+          <section className="ongoingTasks_section">
+            <h4>Ongoing</h4>
+            <Tasks />
+          </section>
+          <section className="doneTasks_section">
+            <h4>Done</h4>
+          </section>
         </section>
       </main>
       <Footer />

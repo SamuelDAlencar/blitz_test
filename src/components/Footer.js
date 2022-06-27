@@ -1,9 +1,10 @@
 import React from 'react';
+import '../style/Footer.css';
 
 function Footer() {
   return (
     <footer>
-      <h1>(footer)</h1>
+      <h1 className="footer_h1">(footer)</h1>
     </footer>
   );
 }
