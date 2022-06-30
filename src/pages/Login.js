@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { loginAction } from '../redux/actions';
-import { MIN_PASS_LENGTH } from '../consts';
+const MIN_PASS_LENGTH = process.env.MIN_PASS_LENGTH;
 import {
   Button,
   TextField,
@@ -12,7 +12,7 @@ import {
   Container,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import '../css/Login.css';
+import '../style/Login.css';
 
 // This Login page and its style was taken from a personal project (available on my GitHub as "koala_project");
 

@@ -1,7 +1,7 @@
 import { Button, Container, createTheme, makeStyles, TextField, ThemeProvider, Typography } from '@material-ui/core';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../css/SignIn.css';
+import '../style/SignIn.css';
 const MIN_PASS_LENGTH = process.env.MIN_PASS_LENGTH;
 
 export default function SignIn() {
