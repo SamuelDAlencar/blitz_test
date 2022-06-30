@@ -19,6 +19,7 @@ const tasksSlice = createSlice({
       const task = state.find(task => task.id === action.payload);
       task.done = !task.done;
     }
+    
   },
 });
 
