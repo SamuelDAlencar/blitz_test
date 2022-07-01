@@ -1,11 +1,7 @@
 const express = require('express');
-const { StatusCodes: { OK } } = require('http-status-codes');
 const router = express.Router();
+const userRouter = require('./User');
 
-router.use('/', (req, res) => {
-  return res.status(OK).json({
-    message: 'successfully accessed the main router'
-  });
-});
+router.use('/user', userRouter);
 
 module.exports = router;
