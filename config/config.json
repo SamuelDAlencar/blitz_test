@@ -3,21 +3,21 @@
     "username": "root",
     "password": "tdp1503",
     "database": "TasksManager",
-    "host": "127.0.0.1",
+    "host": "172.27.0.3",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
     "password": "tdp1503",
     "database": "TasksManager",
-    "host": "127.0.0.1",
+    "host": "172.27.0.3",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
     "password": "tdp1503",
     "database": "TasksManager",
-    "host": "127.0.0.1",
+    "host": "172.27.0.3",
     "dialect": "mysql"
   }
 }

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { addTask } from '../redux/slices/tasksSlice';
-import '../style/App.css';
+import '../style/Home.css';
 import Tasks from '../components/Tasks';
 
 function Home() {

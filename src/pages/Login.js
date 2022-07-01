@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { loginAction } from '../redux/actions';
+// import { loginAction } from '../redux/actions';
 const MIN_PASS_LENGTH = process.env.MIN_PASS_LENGTH;
 import {
   Button,
@@ -74,14 +74,16 @@ function Login() {
   //---------------------------------------------------------------
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [user, setUser] = useState({
     email: '',
     userName: '',
     password: '',
   });
   const [passVisibility, setPassVisibility] = useState(false);
-  const [invalidFields, setInvalidFields] = useState({
+  const [invalidFields,
+    // setInvalidFields
+  ] = useState({
     wrongPassword: false,
     inexistentUser: false,
   });
@@ -93,24 +95,24 @@ function Login() {
     }));
   };
 
-  const logButton = () => {
-    const { email, password } = user;
-    const userAccount = JSON.parse(localStorage.getItem(email));
+  // const logButton = () => {
+  //   const { email, password } = user;
+  //   const userAccount = JSON.parse(localStorage.getItem(email));
     
-    if (userAccount
-      && password === userAccount.password) {
-      dispatch(loginAction(user));
-      navigate('/');
-    } else if (!userAccount) {
-      setInvalidFields({ wrongPassword: false, inexistentUser: true });
-      setTimeout(() =>
-        setInvalidFields((prevState) => ({ ...prevState, inexistentUser: false })), 5000);
-    } else if (password !== userAccount.password) {
-      setInvalidFields({ inexistentUser: false, wrongPassword: true });
-      setTimeout(() =>
-        setInvalidFields((prevState) => ({ ...prevState, wrongPassword: false })), 5000);
-    }
-  };
+  //   if (userAccount
+  //     && password === userAccount.password) {
+  //     dispatch(loginAction(user));
+  //     navigate('/');
+  //   } else if (!userAccount) {
+  //     setInvalidFields({ wrongPassword: false, inexistentUser: true });
+  //     setTimeout(() =>
+  //       setInvalidFields((prevState) => ({ ...prevState, inexistentUser: false })), 5000);
+  //   } else if (password !== userAccount.password) {
+  //     setInvalidFields({ inexistentUser: false, wrongPassword: true });
+  //     setTimeout(() =>
+  //       setInvalidFields((prevState) => ({ ...prevState, wrongPassword: false })), 5000);
+  //   }
+  // };
 
   return (
     <ThemeProvider theme={theme}>
@@ -177,7 +179,7 @@ function Login() {
             size="large"
             color="primary"
             variant="contained"
-            onClick={ logButton }
+            // onClick={ logButton }
             type="button"
             className={classes.buttons}
             disabled={
