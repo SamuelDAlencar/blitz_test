@@ -3,21 +3,24 @@
     "username": "root",
     "password": "tdp1503",
     "database": "TasksManager",
-    "host": "to-do_database",
-    "dialect": "mysql"
+    "host": "localhost",
+    "dialect": "mysql",
+    "port": "3306"
   },
   "test": {
     "username": "root",
     "password": "tdp1503",
     "database": "TasksManager",
-    "host": "to-do_database",
-    "dialect": "mysql"
+    "host": "localhost",
+    "dialect": "mysql",
+    "port": "3306"
   },
   "production": {
     "username": "root",
     "password": "tdp1503",
     "database": "TasksManager",
-    "host": "to-do_database",
-    "dialect": "mysql"
+    "host": "localhost",
+    "dialect": "mysql",
+    "port": "3306"
   }
 }
