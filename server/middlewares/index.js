@@ -1,11 +1,12 @@
 const Joi = require('joi');
 const jwt = require('jsonwebtoken');
-const { User,
-  // Task
-} = require('../models');
 
-const EMPTY_FIELD_ERROR = 'Some required fields are missing';
-const secret = process.env.JWT_SECRET;
+const { User } = require('../database/models');
+
+const { EMPTY_FIELD_ERROR } = process.env;
+const { SECRET } = process.env;
+
+// --- Joi validation schemas
 
 const loginJoi = (data) => {
   const schema = Joi.object({
@@ -24,12 +25,15 @@ const loginJoi = (data) => {
 
 const signUpJoi = (data) => {
   const schema = Joi.object({
+    username: Joi.string().required(),
     email: Joi.string().email().required(),
     password: Joi.string().min(6).required(),
   });
 
   return schema.validate(data);
 };
+
+// --------------------------
 
 module.exports = {
   validateAccess: async (req, res, next) => {
@@ -40,7 +44,8 @@ module.exports = {
         return res.status(401).json({ message: 'Token not found' });
       }
 
-      const { data: { email, password } } = jwt.verify(authorization, secret);
+      const { data: { email, password } } = jwt
+        .verify(authorization, SECRET);
 
       const userExists = await User.findOne({
         where: { email, password },
@@ -48,20 +53,23 @@ module.exports = {
       });
   
       if (!userExists) {
-        return res.status(401).json({ message: 'Expired or invalid token' });
+        return res.status(401)
+          .json({ message: 'Expired or invalid token' });
       }      
 
       next();
     } catch (error) {
       console.log(error.message);
 
-      return res.status(401).json({ message: 'Expired or invalid token' });
+      return res.status(401)
+        .json({ message: 'Expired or invalid token' });
     }
   },
 
   validateSignUp: async (req, res, next) => {
     const { error } = signUpJoi(req.body);
     const valid = error == null;
+
     const userExists = await User.findOne({
       where: req.body,
     });

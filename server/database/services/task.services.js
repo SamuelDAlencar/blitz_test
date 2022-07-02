@@ -13,7 +13,7 @@ module.exports = {
     await Task.create({ content, userId: id });
   },
 
-  editTask: async (updatedContent) => {
+  editTask: async () => {
 
   },
 
