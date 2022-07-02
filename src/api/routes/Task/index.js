@@ -2,12 +2,13 @@ const express = require('express');
 const { addTask, editTask,
   // updateTask,
   deleteTask } = require('../../controllers/task.controllers');
+const { validateAccess } = require('../../middlewares');
 
 const router = express.Router();
 
-router.post('/', addTask);
-router.put('/', editTask);
+router.post('/', validateAccess, addTask);
+router.put('/', validateAccess, editTask);
 // router.put('/', updateTask);
-router.delete('/', deleteTask);
+router.delete('/', validateAccess, deleteTask);
 
 module.exports = router;
