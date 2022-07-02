@@ -33,6 +33,24 @@ const signUpJoi = (data) => {
   return schema.validate(data);
 };
 
+const addTaskJoi = (data) => {
+  const schema = Joi.object({
+    content: Joi.string().required()
+  });
+
+  return schema.validate(data);
+};
+
+const editTaskJoi = (data) => {
+  const schema = Joi.object({
+    id: Joi.number().required(),
+    type: Joi.string().valid('status', 'content').required(),
+    update: Joi.string().required()
+  });
+
+  return schema.validate(data);
+};
+
 // --------------------------
 
 module.exports = {
@@ -41,7 +59,7 @@ module.exports = {
       const { authorization } = req.headers;
     
       if (!authorization) {
-        return res.status(401).json({ message: 'Token not found' });
+        return res.status(401).json({ message: 'token not found' });
       }
 
       const { data: { email, password } } = jwt
@@ -54,7 +72,7 @@ module.exports = {
   
       if (!userExists) {
         return res.status(401)
-          .json({ message: 'Expired or invalid token' });
+          .json({ message: 'expired or invalid token' });
       }      
 
       next();
@@ -62,7 +80,7 @@ module.exports = {
       console.log(error.message);
 
       return res.status(401)
-        .json({ message: 'Expired or invalid token' });
+        .json({ message: 'expired or invalid token' });
     }
   },
 
@@ -84,7 +102,7 @@ module.exports = {
     }
 
     if (userExists) {
-      return res.status(409).json({ message: 'User already registered' });
+      return res.status(409).json({ message: 'user already registered' });
     }
   },
 
@@ -92,7 +110,7 @@ module.exports = {
     const { email, password } = req.body;
 
     if (!email || !password) {
-      return res.status(400).json({ message: 'Missing fields' });
+      return res.status(400).json({ message: 'missing fields' });
     }
 
     const { error } = loginJoi(req.body);
@@ -112,7 +130,35 @@ module.exports = {
     }
 
     if (!userExists) {
-      return res.status(400).json({ message: 'Invalid fields' });
+      return res.status(400).json({ message: 'invalid fields' });
     }
+  },
+
+  validateTaskAdd: async (req, res, next) => {
+    const { error } = addTaskJoi(req.body);
+    const valid = error == null;
+
+    if (!valid) {
+      const { details } = error;
+      const message = details.map((i) => i.message).join(',');
+
+      return res.status(400).json({ message });
+    }
+
+    next();
+  },
+
+  validTaskUpdate: async (req, res, next) => {
+    const { error } = editTaskJoi(req.body);
+    const valid = error == null;
+
+    if (!valid) {
+      const { details } = error;
+      const message = details.map((i) => i.message).join(',');
+
+      return res.status(400).json({ message });
+    }
+
+    next();
   },
 };

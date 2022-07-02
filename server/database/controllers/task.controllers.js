@@ -7,7 +7,7 @@ module.exports = {
 
     await taskServices.addTask(content, token);
 
-    return res.status(201).json({ content });
+    return res.status(201).json({ message: 'task created successfully' });
   },
 
   updateTask: async (req, res) => {
@@ -15,7 +15,7 @@ module.exports = {
 
     await taskServices.updateTask(id, type, update);
 
-    return res.status(204).json({ update, id, mesage: 'success' });
+    return res.status(200).json({ message: 'task updated successfully' });
   },
 
   deleteTask: async () => {
