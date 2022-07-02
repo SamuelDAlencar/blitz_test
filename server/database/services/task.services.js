@@ -13,15 +13,28 @@ module.exports = {
     await Task.create({ content, userId: id });
   },
 
-  updateTask: async (id, type, update) => {
+  updateTask: async (taskId, type, update) => {
     if (type === 'status') {
-      await Task.update({ status: update }, { where: { id } });
+      await Task.update({ status: update }, { where: { id: taskId } });
     } else {
-      await Task.update({ content: update }, { where: { id } });
+      await Task.update({ content: update }, { where: { id: taskId } });
     }
   },
 
-  deleteTask: async () => {
+  deleteTask: async (id) => {
+    const taskExists = await Task.findOne({ where: { id } });
 
+    if (!taskExists) {
+      const error = {
+        message: 'this task does not exists',
+        status: 404,
+      };
+
+      throw error;
+    }
+
+    await Task.destroy({
+      where: { id }
+    });
   },
 };

@@ -18,7 +18,17 @@ module.exports = {
     return res.status(200).json({ message: 'task updated successfully' });
   },
 
-  deleteTask: async () => {
+  deleteTask: async (req, res) => {
+    try {
+      const { id } = req.body;
+  
+      await taskServices.deleteTask(id);
+  
+      return res.status(204).json();
+    } catch (error) {
+      const { status, message } = error;
 
+      return res.status(status).json({ message });
+    }
   },
 };
