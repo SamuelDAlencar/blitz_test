@@ -13,12 +13,12 @@ module.exports = {
     await Task.create({ content, userId: id });
   },
 
-  editTask: async () => {
-
-  },
-
-  updateTask: async () => {
-
+  updateTask: async (id, type, update) => {
+    if (type === 'status') {
+      await Task.update({ status: update }, { where: { id } });
+    } else {
+      await Task.update({ content: update }, { where: { id } });
+    }
   },
 
   deleteTask: async () => {

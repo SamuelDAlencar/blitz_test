@@ -2,20 +2,20 @@ const taskServices = require('../services/task.services');
 
 module.exports = {
   addTask: async (req, res) => {
-    const { authorization } = req.headers;
     const { content } = req.body;
+    const token = req.headers.authorization;
 
-    taskServices.addTask(content, authorization);
+    await taskServices.addTask(content, token);
 
     return res.status(201).json({ content });
   },
 
-  editTask: async () => {
+  updateTask: async (req, res) => {
+    const { id, type, update } = req.body;
 
-  },
+    await taskServices.updateTask(id, type, update);
 
-  updateTask: async () => {
-
+    return res.status(204).json({ update, id, mesage: 'success' });
   },
 
   deleteTask: async () => {
