@@ -3,7 +3,7 @@ const { User } = require('../models');
 const generateJwt = require('../../utils/generateJwt');
 
 module.exports = {
-  signUp: async ({ username, email, password }) => {
+  signUp: async (username, email, password) => {
     const user = await User.findOne({
       where: { email, password },
       attributes: { exclude: ['password'] },
@@ -25,7 +25,7 @@ module.exports = {
     return token;
   },
 
-  logIn: async ({ email, password }) => {
+  logIn: async (email, password) => {
     const user = await User.findOne({
       where: { email, password },
       attributes: { exclude: ['password'] },
