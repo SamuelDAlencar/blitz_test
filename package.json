@@ -32,8 +32,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "debug": "nodemon ./src/api/index.js",
-    "pre:start": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate --migrations-path ./src/api/migrations && npx sequelize-cli db:seed:all --seeders-path ./src/api/seeders"
+    "pre:start": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate --migrations-path ./src/api/migrations && npx sequelize-cli db:seed:all --seeders-path ./src/api/seeders",
+    "debug": "npm run pre:start && nodemon ./src/api/index.js"
   },
   "eslintConfig": {
     "extends": [

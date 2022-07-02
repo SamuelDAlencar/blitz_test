@@ -16,7 +16,10 @@ services:
   db:
     container_name: to-do_database
     image: mysql:5.7
+    restart: always
     ports:
       - 3306:3306
+    expose:
+      - 3306
     environment:
       - MYSQL_ROOT_PASSWORD=tdp1503
