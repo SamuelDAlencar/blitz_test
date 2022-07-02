@@ -1,7 +1,7 @@
 const express = require('express');
 const { addTask, editTask,
   // updateTask,
-  deleteTask } = require('../../controllers/task.controllers');
+  deleteTask } = require('../../database/controllers/task.controllers');
 const { validateAccess } = require('../../middlewares');
 
 const router = express.Router();

@@ -18,7 +18,7 @@ module.exports = {
       throw error;
     }
 
-    const token = generateJwt({ username, email, password });
+    const token = generateJwt({ email, password });
 
     await User.create({ username, email, password });
 
