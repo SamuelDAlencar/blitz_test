@@ -87,9 +87,10 @@ module.exports = {
   validateSignUp: async (req, res, next) => {
     const { error } = signUpJoi(req.body);
     const valid = error == null;
+    const { email } = req.body;
 
     const userExists = await User.findOne({
-      where: req.body,
+      where: { email },
     });
 
     if (valid && !userExists) {

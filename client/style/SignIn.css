@@ -1,29 +1,22 @@
-.create_account-h1 {
-  color: #EEEEEE;
-  width: 150px;
-  margin: 0 0 50px;
+.signIn-main {
+  padding: 100px;
+  text-align: center;
+}
+
+.signIn-h1 {
   font-size: 250%;
 }
 
-.create_account-form {
-  background-color: #222831;
-  color: #EEEEEE;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  align-items: center;
-  width: 93%;
-  padding: 100px;
-  width: 100%;
-  height: 100%;
-  border-radius: 5px;
+.signIn-input-section {
+  margin-bottom: 30px;
 }
 
-.create_account-form-input {
+.signIn-input {
   color: #EEEEEE;
-  font-size: 90%;
+  font-size: 100%;
   padding: 10px;
-  width: 60%;
+  width: 50%;
+  max-width: 500px;
   margin: 0 0 5% 1%;
   border: 0;
   border-bottom: 1px solid #EEEEEE;
@@ -31,17 +24,21 @@
   background-color: inherit;
 }
 
-.create_account-form-input:-webkit-autofill,
-.create_account-form-input:-webkit-autofill:hover, 
-.create_account-form-input:-webkit-autofill:focus, 
-.create_account-form-input:-webkit-autofill:active{
+.signIn-input:-webkit-autofill,
+.signIn-input:-webkit-autofill:hover, 
+.signIn-input:-webkit-autofill:focus, 
+.signIn-input:-webkit-autofill:active{
   -webkit-text-size-adjust: 90%;
   -webkit-text-fill-color: #EEEEEE !important;
   -webkit-box-shadow: 0 0 0 30px #222831 inset !important;
 }
 
-.create_account-form-input:focus {
+.signIn-input:focus {
   outline: none;
   color: #EEEEEE;
   text-decoration: none;
+}
+
+.signIn_button {
+  height: 50px;
 }
