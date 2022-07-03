@@ -4,8 +4,10 @@ const app = express();
 const mainRouter = require('./routes');
 const PORT = process.env.API_PORT;
 const { StatusCodes: { OK } } = require('http-status-codes');
+const cors = require('cors');
 
 app.use(express.json());
+app.use(cors());
 
 app.use(mainRouter);
 

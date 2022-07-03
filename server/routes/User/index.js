@@ -4,7 +4,7 @@ const { validateLogin, validateSignUp } = require('../../middlewares');
 
 const router = express.Router();
 
-router.post('/', validateSignUp, signUp);
-router.get('/', validateLogin, logIn);
+router.post('/signup', validateSignUp, signUp);
+router.post('/login', validateLogin, logIn);
 
 module.exports = router;
