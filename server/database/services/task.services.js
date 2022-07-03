@@ -10,7 +10,7 @@ module.exports = {
       attributes: { exclude: ['password'] },
     });
     
-    await Task.create({ content, userId: id });
+    return await Task.create({ content, userId: id });
   },
 
   updateTask: async (taskId, type, update) => {
