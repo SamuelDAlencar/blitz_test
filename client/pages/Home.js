@@ -35,8 +35,8 @@ function Home() {
       <Header />
       <main className='app_main'>
         <section className="addTask_section">
-          <h3 className="main_h3">New Task</h3>
-          <input onChange={handleChange} />
+          <h2 className="main_h2">New Task</h2>
+          <input onChange={handleChange} className='addTask_input' />
           <button
             onClick={handleAddTask}
             className='task_button'
