@@ -14,7 +14,7 @@ module.exports = {
 
     const token = await userServices.logIn(email, password);
 
-    return res.status(200).json({ token });
+    return res.status(200).json(token);
   },
 
   getByEmail: async (req, res) => {

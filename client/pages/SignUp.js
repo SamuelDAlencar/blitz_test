@@ -1,6 +1,9 @@
 import { Button, TextField } from '@material-ui/core';
+import axios from 'axios';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { token } from '../redux/slices/userSlice';
 import '../style/SignIn.css';
 
 export default function SignIn() {
@@ -12,6 +15,7 @@ export default function SignIn() {
   const [passVisibility, setPassVisibility] = useState(false);
   const [userExists, setUserExists] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const inputHandler = ({ target: { id, value } }) => {
     setNewUser((prevState) => ({
@@ -23,25 +27,20 @@ export default function SignIn() {
   const SignIn = async () => {
     const { username, email, password } = newUser;
 
-    const request = await fetch('http://localhost:3001/user/signup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        username,
-        email,
-        password
-      })
+    await axios.post('http://localhost:3001/user/signup', {
+      username,
+      email,
+      password
+    }).then((response) => {
+      if (response.status === 409) {
+        setUserExists(!userExists);
+        setTimeout(() =>
+          setUserExists(false), 5000);
+      } else {
+        dispatch(token(response.data));
+        navigate('/home');
+      }
     });
-
-    if (request.status === 409) {
-      setUserExists(!userExists);
-      setTimeout(() =>
-        setUserExists(false), 5000);
-    } else {
-      navigate('/home');
-    }
   };
 
   return (
