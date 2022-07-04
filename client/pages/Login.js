@@ -102,7 +102,7 @@ function Login() {
       >Log In</Button>
       <Button
         size="large"
-        onClick={() => navigate('/')}
+        onClick={() => navigate('/user/signup')}
         className='logIn_button'
         color="primary"
         variant="outlined"

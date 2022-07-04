@@ -57,7 +57,7 @@ module.exports = {
   validateAccess: async (req, res, next) => {
     try {
       const { authorization } = req.headers;
-    
+      
       if (!authorization) {
         return res.status(401).json({ message: 'token not found' });
       }
@@ -69,18 +69,18 @@ module.exports = {
         where: { email, password },
         attributes: { exclude: ['password'] },
       });
-  
+
       if (!userExists) {
         return res.status(401)
           .json({ message: 'expired or invalid token' });
-      }      
+      }
 
       next();
     } catch (error) {
       console.log(error.message);
 
-      return res.status(401)
-        .json({ message: 'expired or invalid token' });
+      return res.status(500)
+        .json({ message: 'error on server side' });
     }
   },
 
