@@ -1,7 +1,47 @@
+.tasks_ol {
+  padding: 0 50px;
+}
+
+.tasksHeader_li {
+  font-size: 150%;
+  padding: 1px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-weight: 700;
+  /* border: 1px solid black; */
+}
+
+.tasksHeader_li p {
+  margin: 5px;
+}
+
+.task_li {
+  font-size: 120%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: 1px solid rgb(179, 179, 179);
+}
+
+.taskStatus_select {
+  height: 30px;
+  margin: 0px 15px;
+}
+
+.task_button {
+  border: 0 transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 100%;
+  margin: 0px 5px;
+  padding: 5px;
+}
+
 .app_main {
   text-align: center;
-  background-color: #393E46;
-  color: whitesmoke;
+  /* background-color: #393E46; */
+  /* color: whitesmoke; */
 }
 
 .main_h3 {

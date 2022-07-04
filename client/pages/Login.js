@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, TextField } from '@material-ui/core';
 import '../style/Login.css';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { token } from '../redux/slices/userSlice';
 
 // This Login page and its style was taken from a personal project (available on my GitHub as "koala_project");
 
 function Login() {
-  const navigate = useNavigate();
   const [user, setUser] = useState({
     email: '',
     userName: '',
@@ -14,6 +16,8 @@ function Login() {
   });
   const [passVisibility, setPassVisibility] = useState(false);
   const [invalidFields, setInvalidFields] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const inputHandler = ({ target: { id, value } }) => {
     setUser((prevState) => ({
@@ -24,24 +28,19 @@ function Login() {
 
   const logButton = async () => {
     const { email, password } = user;
-    const request = await fetch('http://localhost:3001/user/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email,
-        password
-      })
+    await axios.post('http://localhost:3001/user/login', {
+      email,
+      password
+    }).then((response) => {
+      if (response.status === 200) {
+        dispatch(token(response.data));
+        navigate('/home');
+      } else if (response.status === 400) {
+        setInvalidFields(true);
+        setTimeout(() =>
+          setInvalidFields(false), 5000);
+      }
     });
-
-    if (request.status === 200) {
-      navigate('/home');
-    } else if (request.status === 400) {
-      setInvalidFields(true);
-      setTimeout(() =>
-        setInvalidFields(false), 5000);
-    }
   };
 
   return (

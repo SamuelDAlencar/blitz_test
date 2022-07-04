@@ -11,14 +11,26 @@ function Tasks() {
   };
 
   return (
-    <ol>
+    <ol className='tasks_ol'>
+      <li className='tasksHeader_li'>
+        <p>Task</p>
+        <p>Status/Options</p>
+      </li>
       {tasks.map((task, i) => {
         return (
-          <li key={i}>{task.subject}
-            <button onClick={() => handleEditTask(i + 1)}>
-              Edit
-            </button>
-            <input type="checkbox" />
+          <li key={i} className='task_li'>
+            <p onClick={() => handleEditTask(i + 1)}>
+              {task.subject}
+            </p>
+            <section className='taskEditOptions_section'>
+              <select className='taskStatus_select'>
+                <option>Pending</option>
+                <option>Done</option>
+                <option>Ongoing</option>
+              </select>
+              <button className='task_button'>Edit</button>
+              <button className='task_button'>Delete</button>
+            </section>
           </li>
         );
       })}
