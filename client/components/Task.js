@@ -1,14 +1,17 @@
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { useDispatch  } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   editTaskSubject, deleteTask,
   // editTaskStatus
 } from '../redux/slices/tasksSlice';
+import { selectToken } from '../redux/slices/userSlice';
 
 function Task(props) {
   const { taskId, task } = props;
   const dispatch = useDispatch();
+  const { token } = useSelector(selectToken);
 
   const handleEditSubject = (e) => {
     const { id } = e.target.parentNode;
@@ -21,12 +24,18 @@ function Task(props) {
   //   dispatch(editTaskStatus({ id, subject: 'edited' }));
   // };
 
-  const handleDelete = (e) => {
+  const handleDelete = async (e) => {
     const { id } = e.target.parentNode;
-    dispatch(deleteTask(id));
+
+    await axios.delete(`http://localhost:3001/task/${parseInt(id)}`, {
+      headers: { 'Authorization': token }
+    }, {}).then((response) => {
+      if (response.status === 204) {
+        dispatch(deleteTask(id));
+      }
+    });
   };
 
-  console.log('got into the task comp');
   return (
     <li className='task_li'>
       <p>

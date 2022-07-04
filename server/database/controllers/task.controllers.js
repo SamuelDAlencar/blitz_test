@@ -20,7 +20,7 @@ module.exports = {
 
   deleteTask: async (req, res) => {
     try {
-      const { id } = req.body;
+      const { id } = req.params;
   
       await taskServices.deleteTask(id);
   
@@ -31,4 +31,10 @@ module.exports = {
       return res.status(status).json({ message });
     }
   },
+
+  getTasksByUID: async (req, res) => {
+    const tasks = taskServices.getTasksByUID(req.params);
+
+    return res.status(200).json(tasks);
+  }
 };

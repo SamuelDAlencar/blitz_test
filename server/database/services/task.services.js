@@ -37,4 +37,10 @@ module.exports = {
       where: { id }
     });
   },
+
+  getTasksByUID: async (id) => {
+    const tasks = await Task.findAll({ where: { userId: id } });
+
+    return tasks;
+  }
 };

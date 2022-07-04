@@ -1,6 +1,7 @@
 import React, {
   useEffect,
-  useState } from 'react';
+  useState
+} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -17,6 +18,8 @@ function Home() {
   const [renderTasks, setRenderTasks] = useState(false);
   const tasks = useSelector(selectTasks);
   const { token } = useSelector(selectToken);
+
+  // const [allTasks, setAllTasks] = useState([]);
 
   const handleChange = (event) => {
     setCurrTask(event.target.value);
@@ -46,9 +49,21 @@ function Home() {
 
   useEffect(() => {
     setRenderTasks(true);
+    // console.log(allTasks);
   }, [taskId]);
 
-  console.log('got into the home comp');
+  // useEffect(async () => {
+  //   await axios.get(`http://localhost:3001/task/${id}`, {}, {
+  //     headers: { 'Authorization': token }
+  //   }).then((response) => {
+  //     if (response.status === 201) {
+  //       setRenderTasks(false);
+  //       setTaskId(taskId + 1);
+  //       setAllTasks(response.data);
+  //     }
+  //   });
+  // }, []);
+
   return (
     <>
       <Header />
