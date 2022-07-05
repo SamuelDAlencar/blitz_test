@@ -2,7 +2,10 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { editTaskSubject, deleteTask } from '../redux/slices/tasksSlice';
+import {
+  // editTaskSubject,
+  deleteTask
+} from '../redux/slices/tasksSlice';
 import { selectToken } from '../redux/slices/userSlice';
 
 function Task(props) {
@@ -10,10 +13,10 @@ function Task(props) {
   const dispatch = useDispatch();
   const { token } = useSelector(selectToken);
 
-  const handleEditSubject = (e) => {
-    const { id } = e.target.parentNode;
-    dispatch(editTaskSubject({ id, subject: 'edited' }));
-  };
+  // const handleEditSubject = (e) => {
+  //   const { id } = e.target.parentNode;
+  //   dispatch(editTaskSubject({ id, subject: 'edited' }));
+  // };
 
   const handleEditStatus = async (e) => {
     const { id } = e.target.parentElement;
@@ -50,7 +53,9 @@ function Task(props) {
           <option value='done'>Done</option>
           <option value='ongoing'>Ongoing</option>
         </select>
-        <button className='task_button' onClick={handleEditSubject}>Edit</button>
+        <button className='task_button'
+        // onClick={handleEditSubject}
+        >Edit</button>
         <button className='task_button' onClick={handleDelete}>Delete</button>
       </section>
     </li>
