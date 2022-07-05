@@ -1,60 +1,37 @@
-// const { expect, assert } = require('chai');
-// const sinon = require('sinon');
-// const taskServices = require('../database/services/task.services');
-// const { Task, User } = require('../database/models');
-// const jwt = require('jsonwebtoken');
+const chai = require('chai');
+const { afterEach, beforeEach } = require('mocha');
+const sinon = require('sinon');
+const chaiHttp = require('chai-http');
+const taskServices = require('../src/database/services/task.services');
+const { User, Task } = require('../src/database/models');
+const jwt = require('jsonwebtoken');
 
-// // describe('taskService - Calls the addTask function', () => {
-// //   describe('When all fields are valid', () => {
-// //     const jwtReturn = {
-// //       data: {
-// //         email: 'email@email.com', password: 'password123'
-// //       }
-// //     };
+chai.use(chaiHttp);
 
-// //     const userReturn = {
-// //       dataValues: { id: 1 } 
-// //     };
+const { expect } = chai;
 
-// //     const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoic2FybC4yMDAxQGhvdG1haWwuY29tIiwicGFzc3dvcmQiOiJhYWFhYWFhYSJ9LCJpYXQiOjE2NTY3OTQ5Mzh9.-xKrxAo7AJCyu41nTb8OqyKw5sPQ8DvTpvDQtPspoFA';
+describe('taskServices - Calls the addTask function', () => {
+  describe('If the task addition successfully occurs:', () => {
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoic2FybC4yMDAxQGhvdG1haWwuY29tIiwicGFzc3dvcmQiOiIxMjM0NTY3OCJ9LCJpYXQiOjE2NTcwMDAwNDR9.uB8ds1x8S2Fk3bdhgJvp0hx9yFBTytkXvlElgKkwesQ';
 
-// //     beforeEach(() => {
-// //       sinon.stub(jwt, 'decode').resolves(jwtReturn);
-// //       sinon.stub(User, 'findOne').resolves(userReturn);
-// //       sinon.stub(Task, 'create').resolves({});
-// //     });
+    beforeEach(() => {
+      sinon.stub(jwt, 'decode')
+        .resolves({ data: { email: 'email@email.com', password: 'password' } });
+      sinon.stub(User, 'findOne').resolves({ dataValues: { id: 1 } });
+      sinon.stub(Task, 'create').resolves({ dataValues: { id: 1, status: 'pending' } });
+    });
 
-// //     afterEach(() => {
-// //       jwt.decode.restore();
-// //       User.findOne.restore();
-// //       Task.create.restore();
-// //     });
+    afterEach(() => {
+      jwt.decode.restore();
+      User.findOne.restore();
+      Task.create.restore();
+    });
 
-// //     it('It should call the model and the "create" method', async () => {
-// //       const taskAdded = await taskServices.addTask('content', token);
-// //       console.log(jwt.decode(token));
+    it('It should return the correct object', async () => {
+      const data = await taskServices.addTask('study', token);
 
-// //       expect(taskAdded).to.be.an('object');
-// //     });
-// //   });
-// // });
-
-// describe('taskService - Calls the editTask function', () => {
-//   describe('When all fields are valid', () => {
-
-//     beforeEach(() => {
-//       sinon.stub(Task, 'update').resolves({});
-//     });
-
-//     afterEach(() => {
-//       Task.update.restore();
-//     });
-
-//     it('It should call the model with the "update" method', async () => {
-//       const a = await taskServices.updateTask(1, 'status', 'pending');
-
-//       expect(a.calledOnce()).to.equal(true);
-//     });
-//   });
-// });
+      expect(data).to.be.an('object');
+    });
+  });
+});
 
