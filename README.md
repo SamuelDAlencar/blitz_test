@@ -10,6 +10,7 @@
  * Express.js
  * Sequelize
  * Node.js
+ * MySQL
  
 # How to run and test the application:
 
