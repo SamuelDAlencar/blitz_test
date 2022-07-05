@@ -1,10 +1,10 @@
 import React from 'react';
 import '../style/Header.css';
 
-function Header() {
+function Header(props) {
   return (
     <header>
-      <h1 className="header_h1">(header)</h1>
+      <h1 className="header_h1">Ebyrt</h1>
     </header>
   );
 }

@@ -53,8 +53,8 @@ function Home() {
         </section>
         <ol className='tasks_ol'>
           <li className='tasksHeader_li'>
-            <p>Task</p>
-            <p>Status/Options</p>
+            <p style={{ borderRight: '1px solid black', width: '50%' }}>Task</p>
+            <p style={{ borderLeft: '1px solid black', width: '50%' }}>Status/Options</p>
           </li>
           {renderTasks && tasks.map((task, i) => {
             return <Task key={i} taskId={task.id} task={task} />;
