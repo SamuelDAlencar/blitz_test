@@ -3,24 +3,41 @@ version: "3.1"
 services:
   api:
     container_name: to-do_api
-    image: node:16
+    build: ./server
+    platform: linux/amd64
     ports:
       - 3001:3001
-      - 3000:3000
     volumes:
-      - ./:/usr/app
-    working_dir: /usr/app
-    restart: always
+      - ./server:/usr/app/server
+    environment:
+      - PORT=3001
+      - DB_USER=root
+      - DB_PASSWORD=tdp1503
+      - DB_HOST=db
+      - DB_NAME=TasksManager
+      - DB_PORT=3306
+      - DB_DIALECT=mysql
+      - SECRET=alkengds014762109347kwpoiqn98473
+    working_dir: /usr/app/server
     stdin_open: true
     tty: true
-    command: bash
+    restart: always
+    depends_on:
+      - db
   db:
     container_name: to-do_database
     image: mysql:5.7
+    platform: linux/amd64
     restart: always
     ports:
       - 3306:3306
-    expose:
-      - 3306
     environment:
       - MYSQL_ROOT_PASSWORD=tdp1503
+  front:
+    container_name: to-do_front
+    build: ./client
+    volumes:
+      - ./client:/usr/app/client
+    platform: linux/amd64
+    ports:
+      - 3000:3000
