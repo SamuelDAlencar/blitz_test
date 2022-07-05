@@ -22,4 +22,4 @@
   > If an error occurs saying that the port is on use, check if there's other application running on port `3001` and/or on ports `3306` and `3000` (all the ports used in this project)
 
 Now the page, api and database should be already running, to access the page, enter the `http://localhost:3000/user/signup` url
-  > Note, you can't add or delete tasks if you aren't logged in, so first create an account. If you already signed in but restarted the page, access the url `http://localhost:3000/user/signup` to recover the token
+  > Note, you can't add or delete tasks if you aren't logged in, so first, create an account. If you already signed in but restarted the page, access the url `http://localhost:3000/user/signup` to recover the token
