@@ -17,8 +17,8 @@
  * Clone this rep: (SSH) `git clone git@github.com:SamuelDAlencar/ebyrt_test.git` in the terminal
  > This project runs using `docker`
  * Run these steps in order:
-   1. Run `docker-compose up -d` inside the rep folder
-   2. Now, to load the database and prepare it for usage, run `npm run pre:start`
+   1. Run `docker-compose up -d` in the terminal
+   2. Now, with our containers already up, load the database structure by running `npm run pre:start`
   > If an error occurs saying that the port is on use, check if there's other application running on port `3001` and/or on ports `3306` and `3000` (all the ports used in this project)
 
 Now the page, api and database should be already running, to access the page, enter the `http://localhost:3000/user/signup` url
