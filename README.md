@@ -11,7 +11,7 @@
  * Sequelize
  * Node.js
  
-# How to run and test the application 👨‍💻:
+# How to run and test the application:
 
  * Clone this rep: (SSH) `git clone git@github.com:SamuelDAlencar/ebyrt_test.git` in the terminal
  > This project runs using `docker`
