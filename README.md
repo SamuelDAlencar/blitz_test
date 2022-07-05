@@ -1,6 +1,6 @@
 # Ebyrt task-manager
 
-  Task manager that allows the user to sign in, log in, add a task, delete, and update it's state (still no edit subject option implemented)
+  Task manager that allows the user to sign in, log in, add a task, delete, and update it's state (still no task subject editing option implemented)
  
  # Techs used
  
