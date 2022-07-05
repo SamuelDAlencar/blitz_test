@@ -43,7 +43,6 @@ const addTaskJoi = (data) => {
 
 const editTaskJoi = (data) => {
   const schema = Joi.object({
-    id: Joi.number().required(),
     type: Joi.string().valid('status', 'content').required(),
     update: Joi.string().required()
   });
