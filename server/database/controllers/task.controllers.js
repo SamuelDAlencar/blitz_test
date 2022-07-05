@@ -11,7 +11,8 @@ module.exports = {
   },
 
   updateTask: async (req, res) => {
-    const { id, type, update } = req.body;
+    const { type, update } = req.body;
+    const { id } = req.params;
 
     await taskServices.updateTask(id, type, update);
 

@@ -7,8 +7,7 @@ const tasksSlice = createSlice({
     addTask(state, action) {
       state.push({
         id: action.payload.id,
-        subject: action.payload.subject,
-        status: 'pending'
+        subject: action.payload.subject
       });
     },
 
@@ -18,11 +17,6 @@ const tasksSlice = createSlice({
       taskToEdit.subject = action.payload.subject;
     },
 
-    editTaskStatus(state, action) {
-      const task = state.find(task => task.id === parseInt(action.payload.id));
-      task.status = action.payload.status;
-    },
-    
     deleteTask(state, action) {
       return state.filter((task) => task.id !== parseInt(action.payload));
     }
